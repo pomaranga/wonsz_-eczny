@@ -100,3 +100,30 @@ def draw_end_screen():
     textSize(24)
     text("ENTER to retry", width / 2, height / 2)
     text("ESC to quit", width / 2, height / 2 + 25)
+
+def keyReleased():
+    global gameState
+   
+    if gameState == "start" and key == ENTER:
+        gameState = "play"
+    elif gameState == "end":
+        if key == ENTER:
+            reset_game()
+            gameState = "play"
+        elif key == ESC:
+            exit()
+    elif gameState == "play":
+        if keyCode == UP and snake.dir.y == 0:
+            snake.change_dir(0, -1)
+        elif keyCode == DOWN and snake.dir.y == 0:
+            snake.change_dir(0, 1)
+        elif keyCode == RIGHT and snake.dir.x == 0:
+            snake.change_dir(1, 0)
+        elif keyCode == LEFT and snake.dir.x == 0:
+            snake.change_dir(-1, 0)
+
+def reset_game():
+    global snake, food
+    snake = Snake()
+    food = Food()
+    food.pick_location()
