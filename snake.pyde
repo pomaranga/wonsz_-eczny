@@ -34,3 +34,20 @@ class Snake:
     def display(self):
         for part in self.body:
             rect(part.x * scl, part.y * scl, scl, scl)
+
+class Food:
+    def __init__(self):
+        self.position = PVector(floor(random(cols)), floor(random(rows)))
+    
+    def pick_location(self):
+        self.position = PVector(floor(random(cols)), floor(random(rows)))
+
+    def display(self):
+        rect(self.position.x * scl, self.position.y * scl, scl, scl)
+
+scl = 20
+cols = 0
+rows = 0
+snake = None
+food = None
+gameState = "start"
