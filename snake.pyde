@@ -1,3 +1,4 @@
+#Wiczka
 class Snake:
     def __init__(self):
         self.body = [PVector(0, 0)]
@@ -35,6 +36,7 @@ class Snake:
         for part in self.body:
             rect(part.x * scl, part.y * scl, scl, scl)
 
+#Iza
 class Food:
     def __init__(self):
         self.position = PVector(floor(random(cols)), floor(random(rows)))
@@ -52,6 +54,7 @@ snake = None
 food = None
 gameState = "start"
 
+#Karo
 def setup():
     global cols, rows, snake, food
     size(400, 400)
@@ -80,6 +83,7 @@ def draw():
     elif gameState == "end":
         draw_end_screen()
 
+#Bibi
 def draw_start_screen():
     background(0)
     fill(255)
@@ -101,6 +105,7 @@ def draw_end_screen():
     text("ENTER to retry", width / 2, height / 2)
     text("ESC to quit", width / 2, height / 2 + 25)
 
+#Ola, Sandra
 def keyReleased():
     global gameState
     
