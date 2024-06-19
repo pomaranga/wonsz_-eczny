@@ -26,7 +26,6 @@ class Snake:
         head = self.body[0]
         if head.x < 0 or head.x >= cols or head.y < 0 or head.y >= rows:
             return True
-        # Check self collision
         for part in self.body[1:]:
             if head.equals(part):
                 return True
