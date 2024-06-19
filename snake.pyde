@@ -80,3 +80,23 @@ def draw():
     elif gameState == "end"
         draw_end_screen_()
 
+def draw_start_screen():
+    background(0)
+    fill(255)
+    textAlign(CENTER)
+    textSize(32)
+    text("Snake Game", width / 2, height / 2 - 20)
+    textSize(24)
+    text("ENTER to start", width / 2, height / 2 + 20)
+    textSize(16)
+    text("ARROWS to control Snake", width / 2, height / 2 + 40)
+
+def draw_end_screen():
+    background(0)
+    fill(255)
+    textAlign(CENTER)
+    textSize(32)
+    text("Game Over", width / 2, height / 2 - 40)
+    textSize(24)
+    text("ENTER to retry", width / 2, height / 2)
+    text("ESC to quit", width / 2, height / 2 + 25)
