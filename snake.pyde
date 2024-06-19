@@ -51,3 +51,32 @@ rows = 0
 snake = None
 food = None
 gameState = "start"
+
+def setup():
+    global cols, rows, snake, food
+    size(400, 400)
+    framerate(10)
+    cols = floor(width/scl)
+    rows = floor(height/scl)
+    reset.game()
+
+def draw():
+    global Gamestate
+    background(51)
+
+    if gameState == "start":
+        draw_start_screen()
+    elif gameState == "play":
+        if snake.check_collision():
+            gameState = "end"
+            return
+        snake.update():
+        if snake.body[0].equals(food.position):
+            snake.grow.snake()
+            food.pick.location()
+        snake.display()
+        fill(255, 0, 100)
+        food.display()
+    elif gameState == "end"
+        draw_end_screen_()
+
