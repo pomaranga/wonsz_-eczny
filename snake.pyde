@@ -55,30 +55,30 @@ gameState = "start"
 def setup():
     global cols, rows, snake, food
     size(400, 400)
-    framerate(10)
-    cols = floor(width/scl)
-    rows = floor(height/scl)
-    reset.game()
+    frameRate(10)
+    cols = floor(width / scl)
+    rows = floor(height / scl)
+    reset_game()
 
 def draw():
-    global Gamestate
+    global gameState
     background(51)
-
+    
     if gameState == "start":
         draw_start_screen()
     elif gameState == "play":
         if snake.check_collision():
             gameState = "end"
             return
-        snake.update():
+        snake.update()
         if snake.body[0].equals(food.position):
-            snake.grow.snake()
-            food.pick.location()
+            snake.grow_snake()
+            food.pick_location()
         snake.display()
         fill(255, 0, 100)
         food.display()
-    elif gameState == "end"
-        draw_end_screen_()
+    elif gameState == "end":
+        draw_end_screen()
 
 def draw_start_screen():
     background(0)
@@ -103,7 +103,7 @@ def draw_end_screen():
 
 def keyReleased():
     global gameState
-   
+    
     if gameState == "start" and key == ENTER:
         gameState = "play"
     elif gameState == "end":
