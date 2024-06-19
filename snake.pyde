@@ -83,7 +83,7 @@ def draw():
         draw_end_screen()
 
 #Bibi
-draw_start_screen():
+def draw_start_screen():
     background(0)
     fill(255)
     textAlign(CENTER)
