@@ -52,6 +52,7 @@ rows = 0
 snake = None
 food = None
 gameState = "start"
+score = 0
 
 #Karo
 def setup():
@@ -76,11 +77,23 @@ def draw():
         if snake.body[0].equals(food.position):
             snake.grow_snake()
             food.pick_location()
+            update_score()
         snake.display()
         fill(255, 0, 100)
         food.display()
+        display_score()
     elif gameState == "end":
         draw_end_screen()
+
+def update_score():
+    global score
+    score += 1
+
+def display_score():
+    fill(255)
+    textSize(16)
+    textAlign(LEFT)
+    text("Score: + str(score),10,20)
 
 #Bibi
 def draw_start_screen():
@@ -101,6 +114,7 @@ def draw_end_screen():
     textSize(32)
     text("Game Over", width / 2, height / 2 - 40)
     textSize(24)
+    text("Score: " + str(score), width / 2, height / 2 - 10)
     text("ENTER to retry", width / 2, height / 2)
     text("ESC to quit", width / 2, height / 2 + 25)
 
@@ -127,7 +141,8 @@ def keyReleased():
             snake.change_dir(-1, 0)
 
 def reset_game():
-    global snake, food
+    global snake, food, score
     snake = Snake()
     food = Food()
     food.pick_location()
+    score = 0
