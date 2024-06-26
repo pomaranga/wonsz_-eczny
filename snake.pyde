@@ -93,7 +93,7 @@ def display_score():
     fill(255)
     textSize(16)
     textAlign(LEFT)
-    text("Score: " + str(score), 10, 20)
+    text("Score: " + str(score), 10, 30)
 
 #Bibi
 def draw_start_screen():
@@ -114,7 +114,7 @@ def draw_end_screen():
     textSize(32)
     text("Game Over", width / 2, height / 2 - 40)
     textSize(24)
-    text("Score: " + str(score), width / 2, height / 2 - 10)
+    text("Score: " + str(score), width / 2, height / 2 - 20)
     text("ENTER to retry", width / 2, height / 2)
     text("ESC to quit", width / 2, height / 2 + 25)
 
