@@ -93,7 +93,7 @@ def display_score():
     fill(255)
     textSize(16)
     textAlign(LEFT)
-    text("Score: + str(score),10,20)
+    text("Score: " + str(score), 10, 20)
 
 #Bibi
 def draw_start_screen():
