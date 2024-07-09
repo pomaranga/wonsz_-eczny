@@ -32,8 +32,12 @@ class Snake:
         return False
 
     def display(self):
+        fill(0, 255, 0)  # Paulina
         for part in self.body:
             rect(part.x * scl, part.y * scl, scl, scl)
+# Paulina
+    def increase_speed(self): 
+        self.speed += 5 
 
 #Iza
 class Food:
@@ -44,6 +48,7 @@ class Food:
         self.position = PVector(floor(random(cols)), floor(random(rows)))
 
     def display(self):
+        fill(255, 0, 100)  # Paulina
         rect(self.position.x * scl, self.position.y * scl, scl, scl)
 
 scl = 20
@@ -53,6 +58,7 @@ snake = None
 food = None
 gameState = "start"
 score = 0
+current_difficulty = 2  # Paulina
 
 #Karo
 def setup():
@@ -78,8 +84,10 @@ def draw():
             snake.grow_snake()
             food.pick_location()
             update_score()
+            if score % 10 == 0 and score > 0: # Paulina
+                snake.increase_speed() # Paulina
+                frameRate(snake.speed) # Paulina
         snake.display()
-        fill(255, 0, 100)
         food.display()
         display_score()
     elif gameState == "end":
@@ -103,9 +111,8 @@ def draw_start_screen():
     textSize(32)
     text("Snake Game", width / 2, height / 2 - 20)
     textSize(24)
-    text("ENTER to start", width / 2, height / 2 + 20)
-    textSize(16)
-    text("ARROWS to control Snake", width / 2, height / 2 + 40)
+    text("Press 1 for Easy (slower)", width / 2, height / 2 + 20) # Paulina 
+    text("Press 2 for Hard (faster)", width / 2, height / 2 + 40) # Paulina
 
 def draw_end_screen():
     background(0)
@@ -115,21 +122,28 @@ def draw_end_screen():
     text("Game Over", width / 2, height / 2 - 40)
     textSize(24)
     text("Score: " + str(score), width / 2, height / 2 - 20)
-    text("ENTER to retry", width / 2, height / 2)
-    text("ESC to quit", width / 2, height / 2 + 25)
+    text("Press ENTER to retry", width / 2, height / 2) # Paulina
+    text("Press ESC to quit", width / 2, height / 2 + 25) # Paulina
 
-#Ola, Sandra
-def keyReleased():
-    global gameState
+# Ola, Sandra, zmienione przez # Paulina
+def keyPressed(): 
+    global gameState, current_difficulty 
     
-    if gameState == "start" and key == ENTER:
-        gameState = "play"
+    if gameState == "start":
+        if key == '1':
+            current_difficulty = 1 
+            start_game()
+        elif key == '2':
+            current_difficulty = 2  
+            start_game()
+
     elif gameState == "end":
         if key == ENTER:
             reset_game()
-            gameState = "play"
+            start_game()
         elif key == ESC:
             exit()
+
     elif gameState == "play":
         if keyCode == UP and snake.dir.y == 0:
             snake.change_dir(0, -1)
@@ -141,8 +155,18 @@ def keyReleased():
             snake.change_dir(-1, 0)
 
 def reset_game():
-    global snake, food, score
+    global snake, food, score, current_difficulty
+    gameState = "start"
     snake = Snake()
     food = Food()
-    food.pick_location()
     score = 0
+    if current_difficulty == 1:
+        snake.speed = 5  
+    elif current_difficulty == 2:
+        snake.speed = 10  
+    frameRate(snake.speed)
+
+def start_game():
+    global gameState
+    gameState = "play"
+    frameRate(snake.speed) 
